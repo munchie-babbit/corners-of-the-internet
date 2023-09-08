@@ -21,8 +21,8 @@ export default function HeaderColumn() {
           </h2>
           <div className="mt-1 flex flex-col sm:mt-0 sm:flex-row sm:flex-wrap sm:space-x-6">
             <div className="mt-2 flex items-center text-sm text-gray-500">
-              Journey into the web's secret playgrounds of fun and discover the
-              coolest and most entertaining secrets of the internet.
+              Journey into the web&apos;s secret playgrounds of fun and discover
+              the coolest and most entertaining secrets of the internet.
             </div>
           </div>
         </div>
