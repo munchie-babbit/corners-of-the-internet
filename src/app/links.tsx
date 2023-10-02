@@ -44,7 +44,9 @@ const HoverPopover: React.FC<{ children: React.ReactNode; image: string }> = ({
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [position, setPosition] = useState({ x: 0, y: 0 });
-  const [offset, setOffset] = useState(0);
+  const [Yoffset, setYOffset] = useState(0);
+  const [Xoffset, setXOffset] = useState(0);
+  const popoverWidth = 300;
 
   const handleMouseEnter = () => {
     setIsOpen(true);
@@ -54,11 +56,15 @@ const HoverPopover: React.FC<{ children: React.ReactNode; image: string }> = ({
     setIsOpen(false);
   };
   useEffect(() => {
-    setOffset(window.scrollY);
+    setYOffset(window.scrollY);
 
     const handleMouseMove = (e: MouseEvent) => {
       setPosition({ x: e.clientX, y: e.clientY });
     };
+    if (position.x > window.innerWidth - popoverWidth) {
+      setXOffset(window.innerWidth - popoverWidth - position.x);
+      console.log(Xoffset);
+    }
 
     if (isOpen) {
       //@ts-ignore
@@ -84,8 +90,8 @@ const HoverPopover: React.FC<{ children: React.ReactNode; image: string }> = ({
             <div
               className="absolute z-2 transition-transform transition-opacity duration-300 ease-in-out"
               style={{
-                top: `${position.y + offset + 10}px`,
-                left: `${position.x + 10}px`,
+                top: `${position.y + Yoffset + 10}px`,
+                left: `${position.x + Xoffset + 10}px`,
               }}
             >
               <Popover.Panel static>
